@@ -16,16 +16,14 @@ public class MainPage {
         spendingsTable
                 .$$("tr")
                 .find(text(spendDescription))
-                .$$("td")
-                .first()
+                .$("td")
                 .scrollTo()
                 .click();
         return this;
     }
 
     public MainPage deleteSpending() {
-        deleteSpendingButton
-                .click();
+        deleteSpendingButton.click();
         return this;
     }
 
