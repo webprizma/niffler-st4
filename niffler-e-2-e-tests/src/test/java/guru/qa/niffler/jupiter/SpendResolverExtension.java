@@ -6,18 +6,20 @@ import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
 import org.junit.jupiter.api.extension.ParameterResolver;
 
+import static guru.qa.niffler.jupiter.SpendExtension.GENERATE_SPEND_NAMESPACE;
+
 public class SpendResolverExtension implements ParameterResolver {
 
-  @Override
-  public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
-    return parameterContext.getParameter()
-        .getType()
-        .isAssignableFrom(SpendJson.class);
-  }
+    @Override
+    public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
+        return parameterContext.getParameter()
+                .getType()
+                .isAssignableFrom(SpendJson.class);
+    }
 
-  @Override
-  public SpendJson resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
-    return extensionContext.getStore(SpendExtension.NAMESPACE)
-        .get("spend", SpendJson.class);
-  }
+    @Override
+    public SpendJson resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
+        return extensionContext.getStore(GENERATE_SPEND_NAMESPACE)
+                .get("spend", SpendJson.class);
+    }
 }
